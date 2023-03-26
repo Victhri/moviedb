@@ -18,16 +18,16 @@ export class MoviedbCollectionsComponent {
   public data: Collection[] = [
     {
       name: 'Trending movies',
-      contents$: this.api2.requestMovies('movie', 'day'),
+      contents$: this.apiTrends.requestMovies('movie', 'day'),
     },
     {
       name: 'Upcoming movies',
-      contents$: this.api.requestMovies('movie', 'upcoming'),
+      contents$: this.apiCategories.requestMovies('movie', 'upcoming'),
     },
     {
       name: 'Popular movies',
-      contents$: this.api.requestMovies('movie', 'popular'),
+      contents$: this.apiCategories.requestMovies('movie', 'popular'),
     },
   ];
-  constructor(private readonly api: MoviedbCollectionsApiService, private readonly api2: MoviedTrendingApiService) {}
+  constructor(private readonly apiCategories: MoviedbCollectionsApiService, private readonly apiTrends: MoviedTrendingApiService) {}
 }
