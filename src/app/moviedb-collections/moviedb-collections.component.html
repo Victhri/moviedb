@@ -1,0 +1,7 @@
+<app-moviedb-trending></app-moviedb-trending>
+<section *ngFor="let collection of data">
+  <h3>{{ collection.name }}</h3>
+  <div *ngFor="let item of collection.contents$ | async">
+    {{ item.title }}
+  </div>
+</section>
