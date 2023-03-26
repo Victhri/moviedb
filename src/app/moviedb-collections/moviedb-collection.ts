@@ -1,7 +1,7 @@
 export interface MoviedbCollection {
   id: number;
   original_title: string;
-  poster_path: string | null;
+  poster_path: string;
   overview: string;
   release_date: string;
   adult: boolean;

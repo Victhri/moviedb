@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MoviedbCollectionsApiService } from './moviedb-collections-api.service';
+import { MoviedTrendingApiService } from './moviedb-trending-api.service';
 import { MoviedbCollection } from './moviedb-collection';
 
 interface Collection {
@@ -16,6 +17,10 @@ interface Collection {
 export class MoviedbCollectionsComponent {
   public data: Collection[] = [
     {
+      name: 'Trending movies',
+      contents$: this.api2.requestMovies('movie', 'day'),
+    },
+    {
       name: 'Upcoming movies',
       contents$: this.api.requestMovies('movie', 'upcoming'),
     },
@@ -24,5 +29,5 @@ export class MoviedbCollectionsComponent {
       contents$: this.api.requestMovies('movie', 'popular'),
     },
   ];
-  constructor(private readonly api: MoviedbCollectionsApiService) {}
+  constructor(private readonly api: MoviedbCollectionsApiService, private readonly api2: MoviedTrendingApiService) {}
 }

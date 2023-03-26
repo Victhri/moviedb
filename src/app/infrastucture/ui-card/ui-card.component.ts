@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 interface CardContents {
   title: string;
   release_date: string;
-  poster_path: string | null;
+  poster_path: string;
   vote_average: number;
 }
 
