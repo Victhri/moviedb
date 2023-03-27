@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MoviedbCollectionsApiService } from './moviedb-collections-api.service';
 import { MoviedTrendingApiService } from './moviedb-trending-api.service';
-import { MoviedbCollection } from './moviedb-collection';
+import { MovieCollection } from './moviedb-collection';
 
 interface Collection {
   name: string;
-  contents$: Observable<MoviedbCollection[]>;
+  contents$: Observable<MovieCollection[]>;
 }
 
 @Component({
