@@ -15,3 +15,19 @@ export interface MovieCollection {
   vote_average: number;
   vote_count: number;
 }
+
+export interface SeriesCollection {
+  poster_path: string;
+  popularity: number;
+  id: number;
+  backdrop_path: string | null;
+  vote_average: number;
+  overview: string;
+  first_air_date: string;
+  origin_country: String[];
+  genre_ids: Number[];
+  original_language: string;
+  vote_count: number;
+  name: string;
+  original_name: string;
+}

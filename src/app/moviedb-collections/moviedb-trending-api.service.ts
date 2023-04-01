@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MovieCollection } from './moviedb-collection';
+import { MovieCollection, SeriesCollection } from './moviedb-collection';
 import { Moviedb } from '../infrastucture/http/moviedb-http';
 
 @Injectable({
@@ -11,14 +11,16 @@ import { Moviedb } from '../infrastucture/http/moviedb-http';
 export class MoviedTrendingApiService {
   constructor(private readonly http: HttpClient) {}
 
-  requestMovies(type: string, time: string): Observable<MovieCollection[]> {
+  getTrends(time: string): Observable<any> {
     const params = new HttpParams({
       fromObject: {
         api_key: '3386bab6b90349650a531f1d4f14e47c',
       },
     });
-    return this.http
-      .get<Moviedb<MovieCollection[]>>(`https://api.themoviedb.org/3/trending/${type}/${time}`, { params })
-      .pipe(map((response) => response.results));
+
+    return forkJoin([
+      this.http.get<Moviedb<MovieCollection[]>>(`https://api.themoviedb.org/3/trending/movie/${time}`, { params }),
+      this.http.get<Moviedb<SeriesCollection[]>>(`https://api.themoviedb.org/3/trending/tv/${time}`, { params }),
+    ]).pipe(map((response) => [...response[0].results, ...response[1].results]));
   }
 }

@@ -1,10 +1,13 @@
 import { Component, Input } from '@angular/core';
 
 interface CardContents {
-  title: string;
-  release_date: string;
+  title?: string;
+  name?: string;
+  release_date?: string;
+  first_air_date?: string;
   poster_path: string;
   vote_average: number;
+  media_type: string;
 }
 
 @Component({
@@ -15,8 +18,11 @@ interface CardContents {
 export class UiCardComponent {
   @Input() contents: CardContents = {
     title: '',
+    name: '',
     poster_path: '',
     release_date: '',
+    first_air_date: '',
     vote_average: 0,
+    media_type: '',
   };
 }
