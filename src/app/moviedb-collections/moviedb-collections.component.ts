@@ -5,10 +5,10 @@ import { MoviedTrendingApiService } from './moviedb-trending-api.service';
 import { MoviedbUpcomingApiService } from './moviedb-upcoming-api.service';
 import { MovieCollection, SeriesCollection } from './moviedb-collection';
 
-// interface Collection {
-//   name: string;
-//   contents$: Observable<MovieCollection[]> | Observable<SeriesCollection[]>;
-// }
+interface Collection {
+  name: string;
+  contents$: Observable<MovieCollection[]> | Observable<SeriesCollection[]>;
+}
 
 @Component({
   selector: 'app-moviedb-collections',
@@ -28,7 +28,7 @@ export class MoviedbCollectionsComponent {
     },
     {
       name: 'Upcoming movies',
-      contents$: this.apiUpcoming.getupcoming('upcoming'),
+      contents$: this.apiUpcoming.getUpcoming('upcoming'),
     },
   ];
   constructor(

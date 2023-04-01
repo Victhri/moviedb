@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MovieCollection } from './moviedb-collection';
 import { Moviedb } from '../infrastucture/http/moviedb-http';
@@ -11,7 +11,7 @@ import { Moviedb } from '../infrastucture/http/moviedb-http';
 export class MoviedbUpcomingApiService {
   constructor(private readonly http: HttpClient) {}
 
-  getupcoming(type: string): Observable<MovieCollection[]> {
+  getUpcoming(type: string): Observable<MovieCollection[]> {
     const params = new HttpParams({
       fromObject: {
         api_key: '3386bab6b90349650a531f1d4f14e47c',
