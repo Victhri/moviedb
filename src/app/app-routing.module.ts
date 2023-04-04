@@ -14,7 +14,7 @@ const routes: Routes = [
     component: MoviedbCollectionsComponent,
   },
   {
-    path: 'collections/:id',
+    path: ':type/:name',
     component: MoviedbDetailsComponent,
   },
 ];

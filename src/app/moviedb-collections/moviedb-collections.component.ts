@@ -7,7 +7,7 @@ import { MovieCollection, SeriesCollection } from './moviedb-collection';
 
 interface Collection {
   name: string;
-  contents$: Observable<MovieCollection[]> | Observable<SeriesCollection[]>;
+  contents$: Observable<(SeriesCollection | MovieCollection)[]>;
 }
 
 @Component({
@@ -16,7 +16,7 @@ interface Collection {
   styleUrls: ['./moviedb-collections.component.scss'],
 })
 export class MoviedbCollectionsComponent {
-  public data = [
+  public data: Collection[] = [
     {
       name: 'Trends',
       contents$: this.apiTrends.getTrends('day'),

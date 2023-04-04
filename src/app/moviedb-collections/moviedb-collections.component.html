@@ -7,8 +7,8 @@
   <div class="collection__wrap">
     <app-ui-card
       class="collection__wrap-item"
-      [routerLink]="['/', 'collections', item.id]"
-      [contents]="item"
+      [routerLink]="['/', item.mediaType, item.id]"
+      [contents]="item | formatMediaType"
       *ngFor="let item of collection.contents$ | async"
     >
     </app-ui-card>

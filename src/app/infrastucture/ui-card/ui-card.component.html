@@ -1,6 +1,4 @@
-<img class="image" [src]="contents.poster_path | imageSource" />
-<p class="title" *ngIf="contents.title">{{ contents.title }}</p>
-<p class="title" *ngIf="contents.name">{{ contents.name }}</p>
-<span class="date" *ngIf="contents.release_date">{{ contents.release_date | date }}</span>
-<span class="date" *ngIf="contents.first_air_date">{{ contents.first_air_date | date }}</span>
-<p class="rate">rate: {{ contents.vote_average }}</p>
+<img class="image" [src]="contents.path | imageSource" />
+<p class="title">{{ contents.title }}</p>
+<span class="date">{{ contents.releaseDate | date }}</span>
+<p class="rate">rate: {{ contents.popularity }}</p>

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MovieCollection } from './moviedb-collection';
+import { MovieCollectionDTO, MovieItem, SeriesCollectionDTO } from './moviedb-collection';
 import { Moviedb } from '../infrastucture/http/moviedb-http';
+import { formatResponse } from '../helpers/format-response';
 
 @Injectable({
   providedIn: 'root',
@@ -11,16 +12,16 @@ import { Moviedb } from '../infrastucture/http/moviedb-http';
 export class MoviedbPopularApiService {
   constructor(private readonly http: HttpClient) {}
 
-  getPopular(type: string): Observable<MovieCollection[]> {
-    const params = new HttpParams({
-      fromObject: {
-        api_key: '3386bab6b90349650a531f1d4f14e47c',
-      },
-    });
+  private getPopularMovies(type: string): Observable<MovieCollectionDTO[]> {
+    return this.http.get<Moviedb<MovieCollectionDTO[]>>(`/movie/${type}`).pipe(map((response) => response.results));
+  }
+  private getPopularSeries(type: string): Observable<SeriesCollectionDTO[]> {
+    return this.http.get<Moviedb<SeriesCollectionDTO[]>>(`/tv/${type}`).pipe(map((response) => response.results));
+  }
 
-    return forkJoin([
-      this.http.get<Moviedb<MovieCollection[]>>(`https://api.themoviedb.org/3/movie/${type}`, { params }),
-      this.http.get<Moviedb<MovieCollection[]>>(`https://api.themoviedb.org/3/tv/${type}`, { params }),
-    ]).pipe(map((response) => [...response[0].results, ...response[1].results]));
+  getPopular(type: string): Observable<MovieItem[]> {
+    return forkJoin([this.getPopularMovies(type), this.getPopularSeries(type)]).pipe(
+      map((response) => formatResponse([...response[0], ...response[1]]))
+    );
   }
 }
