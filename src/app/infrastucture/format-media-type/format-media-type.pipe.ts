@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { MovieCollection, SeriesCollection } from 'src/app/moviedb-collections/moviedb-collection';
+import { MediaType, MovieCollection, SeriesCollection } from 'src/app/moviedb-collections/moviedb-collection';
 import { CardContents } from '../ui-card/ui-card';
 
 @Pipe({
@@ -7,7 +7,7 @@ import { CardContents } from '../ui-card/ui-card';
 })
 export class FormatMediaTypePipe implements PipeTransform {
   transform(value: SeriesCollection | MovieCollection): CardContents {
-    if ('title' in value) {
+    if (this.isMovie(value)) {
       return {
         title: value.title,
         releaseDate: value.releaseDate,
@@ -22,5 +22,8 @@ export class FormatMediaTypePipe implements PipeTransform {
       popularity: value.popularity,
       path: value.path,
     };
+  }
+  isMovie(item: SeriesCollection | MovieCollection): item is MovieCollection {
+    return (item as MovieCollection).mediaType === MediaType.Movie;
   }
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MovieItem } from './moviedb-collection';
+import { MovieCollection } from './moviedb-collection';
 import { Moviedb } from '../infrastucture/http/moviedb-http';
 import { formatResponse } from '../helpers/format-response';
 
@@ -12,7 +12,7 @@ import { formatResponse } from '../helpers/format-response';
 export class MoviedbUpcomingApiService {
   constructor(private readonly http: HttpClient) {}
 
-  getUpcoming(type: string): Observable<MovieItem[]> {
-    return this.http.get<Moviedb<MovieItem[]>>(`/movie/${type}`).pipe(map((response) => formatResponse(response.results)));
+  getUpcoming(type: string): Observable<MovieCollection[]> {
+    return this.http.get<Moviedb<MovieCollection[]>>(`/movie/${type}`).pipe(map(({ results }) => formatResponse(results)));
   }
 }

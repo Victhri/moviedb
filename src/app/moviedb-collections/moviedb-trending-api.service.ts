@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Moviedb } from '../infrastucture/http/moviedb-http';
-import { MovieCollection, MovieItem, SeriesCollection } from './moviedb-collection';
+import { MovieCollection, SeriesCollection } from './moviedb-collection';
 import { formatResponse } from '../helpers/format-response';
 
 @Injectable({
@@ -19,9 +19,9 @@ export class MoviedTrendingApiService {
     return this.http.get<Moviedb<SeriesCollection[]>>(`/trending/tv/${time}`).pipe(map((response) => response.results));
   }
 
-  getTrends(time: string): Observable<MovieItem[]> {
+  getTrends(time: string): Observable<MovieCollection[]> {
     return forkJoin([this.getTrendingMovie(time), this.getTrendingSeries(time)]).pipe(
-      map((response) => formatResponse([...response[0], ...response[1]]))
+      map(([movies, series]) => formatResponse([...movies, ...series]))
     );
   }
 }
