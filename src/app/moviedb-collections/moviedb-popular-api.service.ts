@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MovieCollectionDTO, MovieCollection, SeriesCollectionDTO } from './moviedb-collection';
+import { MovieCollectionDTO, SeriesCollectionDTO, MovieCollection, SeriesCollection } from './moviedb-collection';
 import { Moviedb } from '../infrastucture/http/moviedb-http';
 import { formatResponse } from '../helpers/format-response';
 
@@ -19,7 +19,7 @@ export class MoviedbPopularApiService {
     return this.http.get<Moviedb<SeriesCollectionDTO[]>>(`/tv/${type}`).pipe(map((response) => response.results));
   }
 
-  getPopular(type: string): Observable<MovieCollection[]> {
+  getPopular(type: string): Observable<(MovieCollection | SeriesCollection)[]> {
     return forkJoin([this.getPopularMovies(type), this.getPopularSeries(type)]).pipe(
       map(([movies, series]) => formatResponse([...movies, ...series]))
     );

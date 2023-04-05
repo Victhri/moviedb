@@ -33,7 +33,7 @@ export interface MovieCollection {
   path: string;
   releaseDate: string;
   title: string;
-  mediaType: MediaType;
+  mediaType: MediaType.Movie;
   popularity: number;
 }
 
@@ -43,7 +43,7 @@ export interface SeriesCollection {
   firstAirDate: string;
   name: string;
   popularity: number;
-  mediaType: MediaType;
+  mediaType: MediaType.Serials;
 }
 
 export enum MediaType {

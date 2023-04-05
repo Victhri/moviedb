@@ -7,7 +7,7 @@ import { MovieCollection, SeriesCollection } from './moviedb-collection';
 
 interface Collection {
   name: string;
-  contents$: Observable<(SeriesCollection | MovieCollection)[]>;
+  contents$: Observable<(MovieCollection | SeriesCollection)[]>;
 }
 
 @Component({

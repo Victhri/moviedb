@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Moviedb } from '../infrastucture/http/moviedb-http';
-import { MovieCollection, SeriesCollection } from './moviedb-collection';
+import { MovieCollectionDTO, SeriesCollectionDTO, MovieCollection, SeriesCollection } from './moviedb-collection';
 import { formatResponse } from '../helpers/format-response';
 
 @Injectable({
@@ -12,14 +12,14 @@ import { formatResponse } from '../helpers/format-response';
 export class MoviedTrendingApiService {
   constructor(private readonly http: HttpClient) {}
 
-  private getTrendingMovie(time: string): Observable<MovieCollection[]> {
-    return this.http.get<Moviedb<MovieCollection[]>>(`/trending/movie/${time}`).pipe(map((response) => response.results));
+  private getTrendingMovie(time: string): Observable<MovieCollectionDTO[]> {
+    return this.http.get<Moviedb<MovieCollectionDTO[]>>(`/trending/movie/${time}`).pipe(map((response) => response.results));
   }
-  private getTrendingSeries(time: string): Observable<SeriesCollection[]> {
-    return this.http.get<Moviedb<SeriesCollection[]>>(`/trending/tv/${time}`).pipe(map((response) => response.results));
+  private getTrendingSeries(time: string): Observable<SeriesCollectionDTO[]> {
+    return this.http.get<Moviedb<SeriesCollectionDTO[]>>(`/trending/tv/${time}`).pipe(map((response) => response.results));
   }
 
-  getTrends(time: string): Observable<MovieCollection[]> {
+  getTrends(time: string): Observable<(MovieCollection | SeriesCollection)[]> {
     return forkJoin([this.getTrendingMovie(time), this.getTrendingSeries(time)]).pipe(
       map(([movies, series]) => formatResponse([...movies, ...series]))
     );
