@@ -1,0 +1,16 @@
+<section class="dashboard-header">
+  <h2 class="dashboard-header__title">Welcome.</h2>
+  <h3 class="dashboard-header__subtitle">Millions of movies, TV shows and people to discover. Explore now.</h3>
+</section>
+<section class="collection" *ngFor="let collection of data">
+  <h3 class="collection__title">{{ collection.name }}</h3>
+  <div class="collection__wrap">
+    <app-ui-card
+      class="collection__wrap-item"
+      [routerLink]="['/', item.mediaType, item.id]"
+      [contents]="item | formatMediaType"
+      *ngFor="let item of collection.contents$ | async"
+    >
+    </app-ui-card>
+  </div>
+</section>
