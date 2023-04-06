@@ -30,7 +30,7 @@ export interface SeriesCollectionDTO {
 }
 export interface MovieCollection {
   id: number;
-  path: string;
+  path?: string;
   releaseDate: string;
   title: string;
   mediaType: MediaType.Movie;
@@ -39,7 +39,7 @@ export interface MovieCollection {
 
 export interface SeriesCollection {
   id: number;
-  path: string;
+  path?: string;
   firstAirDate: string;
   name: string;
   popularity: number;

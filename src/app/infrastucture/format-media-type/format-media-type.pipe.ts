@@ -12,7 +12,7 @@ export class FormatMediaTypePipe implements PipeTransform {
         title: value.title,
         releaseDate: value.releaseDate,
         popularity: value.popularity,
-        path: value.path,
+        path: value.path ?? '',
       };
     }
 
@@ -20,7 +20,7 @@ export class FormatMediaTypePipe implements PipeTransform {
       title: value.name,
       releaseDate: value.firstAirDate,
       popularity: value.popularity,
-      path: value.path,
+      path: value.path ?? '',
     };
   }
 }
