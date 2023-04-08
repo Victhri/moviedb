@@ -1,0 +1,11 @@
+<input class="search" [formControl]="search" placeholder="Search films and tv shows..." />
+<section class="search__results" *ngIf="showSearch">
+  <p *ngIf="!result.length">We have no matches.Please, try something else...</p>
+  <app-ui-card
+    class="search__results-item"
+    [routerLink]="['/', item.mediaType, item.id]"
+    [contents]="item | formatMediaType"
+    *ngFor="let item of result"
+  >
+  </app-ui-card>
+</section>
