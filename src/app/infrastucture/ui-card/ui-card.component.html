@@ -1,4 +1,4 @@
 <img class="image" [src]="contents.path | imageSource" />
 <p class="title">{{ contents.title }}</p>
-<span class="date">{{ contents.releaseDate | date }}</span>
+<span class="date" *ngIf="contents.releaseDate">{{ contents.releaseDate | date }}</span>
 <p class="rate">rate: {{ contents.popularity }}</p>

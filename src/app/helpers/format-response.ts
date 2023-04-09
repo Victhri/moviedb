@@ -2,10 +2,14 @@ import {
   MediaType,
   MovieCollection,
   MovieCollectionDTO,
+  PersonCollectionDTO,
   PersonCollection,
   SeriesCollection,
   SeriesCollectionDTO,
 } from '../moviedb-collections/moviedb-collection';
+
+export type SearchCollectionDTO = MovieCollectionDTO | SeriesCollectionDTO | PersonCollectionDTO;
+export type SearchCollection = MovieCollection | SeriesCollection | PersonCollection;
 
 export function seriesMapper(item: SeriesCollectionDTO): SeriesCollection {
   return {
@@ -28,7 +32,7 @@ export function moviesMapper(item: MovieCollectionDTO): MovieCollection {
   };
 }
 
-export function searchMapper(item: any): MovieCollection | SeriesCollection | PersonCollection {
+export function searchMapper(item: SearchCollectionDTO): SearchCollection {
   if (item.media_type === MediaType.Movie) {
     return {
       id: item.id,
@@ -49,11 +53,14 @@ export function searchMapper(item: any): MovieCollection | SeriesCollection | Pe
       firstAirDate: item.first_air_date,
     };
   }
-  return {
-    id: item.id,
-    name: item.name,
-    mediaType: MediaType.Person,
-    popularity: item.popularity,
-    path: item.profile_path ?? '',
-  };
+  if (item.media_type === MediaType.Person) {
+    return {
+      id: item.id,
+      name: item.name,
+      mediaType: MediaType.Person,
+      popularity: item.popularity,
+      path: item.profile_path ?? '',
+    };
+  }
+  throw new Error('The media type should be person, movie or tv');
 }

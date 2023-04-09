@@ -1,12 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { MediaType, MovieCollection, PersonCollection, SeriesCollection } from 'src/app/moviedb-collections/moviedb-collection';
 import { CardContents } from '../ui-card/ui-card';
+import { SearchCollection } from 'src/app/helpers/format-response';
 
 @Pipe({
   name: 'formatMediaType',
 })
 export class FormatMediaTypePipe implements PipeTransform {
-  transform(value: SeriesCollection | MovieCollection | PersonCollection): CardContents {
+  transform(value: SearchCollection): CardContents {
     if (value.mediaType === MediaType.Movie) {
       return {
         title: value.title,
