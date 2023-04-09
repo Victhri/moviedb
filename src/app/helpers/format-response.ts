@@ -8,6 +8,8 @@ import {
   SeriesCollectionDTO,
 } from '../moviedb-collections/moviedb-collection';
 
+import { SeriesCollectionDescriptionDTO, MovieCollectionDescriptionDTO, Details } from '../moviedb-details/moviedb-series-details';
+
 export type SearchCollectionDTO = MovieCollectionDTO | SeriesCollectionDTO | PersonCollectionDTO;
 export type SearchCollection = MovieCollection | SeriesCollection | PersonCollection;
 
@@ -63,4 +65,27 @@ export function searchMapper(item: SearchCollectionDTO): SearchCollection {
     };
   }
   throw new Error('The media type should be person, movie or tv');
+}
+
+export function detailsMapper(data: SeriesCollectionDescriptionDTO | MovieCollectionDescriptionDTO): Details {
+  if (isMovie(data)) {
+    return {
+      title: data.title,
+      path: data.backdrop_path || '',
+      description: data.overview,
+      releaseDate: data.release_date,
+      genres: data.genres,
+    };
+  }
+  return {
+    title: data.name,
+    path: data.backdrop_path || '',
+    description: data.overview,
+    releaseDate: data.first_air_date,
+    genres: data.genres,
+  };
+}
+
+function isMovie(data: SeriesCollectionDescriptionDTO | MovieCollectionDescriptionDTO): data is MovieCollectionDescriptionDTO {
+  return 'title' in data;
 }

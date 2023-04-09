@@ -5,10 +5,11 @@ import { AppComponent } from './app.component';
 import { MoviedbCollectionsModule } from './moviedb-collections/moviedb-collections.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './infrastucture/http/auth.interceptor';
+import { MoviedbDetailsModule } from './moviedb-details/moviedb-details.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, MoviedbCollectionsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, MoviedbCollectionsModule, MoviedbDetailsModule, HttpClientModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
