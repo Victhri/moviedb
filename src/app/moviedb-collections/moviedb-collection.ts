@@ -12,6 +12,7 @@ export interface MovieCollectionDTO {
   popularity: number;
   vote_average: number;
   vote_count: number;
+  media_type?: MediaType.Movie;
 }
 export interface SeriesCollectionDTO {
   id: number;
@@ -27,6 +28,19 @@ export interface SeriesCollectionDTO {
   popularity: number;
   vote_average: number;
   vote_count: number;
+  media_type?: MediaType.Serials;
+}
+export interface PersonCollectionDTO {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for: (SeriesCollectionDTO | MovieCollection)[];
+  known_for_department: string;
+  media_type?: MediaType.Person;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
 }
 export interface MovieCollection {
   id: number;
@@ -45,8 +59,16 @@ export interface SeriesCollection {
   popularity: number;
   mediaType: MediaType.Serials;
 }
+export interface PersonCollection {
+  id: number;
+  path?: string;
+  name: string;
+  popularity: number;
+  mediaType: MediaType.Person;
+}
 
 export enum MediaType {
   Movie = 'movie',
   Serials = 'tv',
+  Person = 'person',
 }
