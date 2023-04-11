@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, Subject, map, tap } from 'rxjs';
 import {
   SeriesCollectionDescriptionDTO,
   MovieCollectionDescriptionDTO,
   CreditsResponse,
   Details,
   ActorCollection,
+  CrewCollection,
 } from './moviedb-series-details';
 import { detailsMapper } from '../helpers/format-response';
 @Injectable({
@@ -15,14 +16,19 @@ import { detailsMapper } from '../helpers/format-response';
 export class MoviedbSeriesDetailsApiService {
   constructor(private readonly http: HttpClient) {}
 
-  requestActors(type: string | null, name: string | number): Observable<ActorCollection[]> {
-    return this.http
-      .get<CreditsResponse>(`/${type}/${name}/credits`)
-      .pipe(map((response) => response.cast.map((actor) => ({ name: actor.name, path: actor.profile_path || '' }))));
+  getData(type: string | null, name: string | number): Observable<CreditsResponse> {
+    return this.http.get<CreditsResponse>(`/${type}/${name}/credits`);
   }
-  requestCrew(type: string | null, name: string | number): Observable<any> {
-    return this.http.get<CreditsResponse>(`/${type}/${name}/credits`).pipe(map((response) => response.crew));
-  }
+
+  // requestActors(type: string | null, name: string | number): Observable<ActorCollection[]> {
+  //   return this.http
+  //     .get<CreditsResponse>(`/${type}/${name}/credits`)
+  //     .pipe(map((response) => response.cast.map((actor) => ({ name: actor.name, path: actor.profile_path || '' }))));
+  // }
+  // requestCrew(type: string | null, name: string | number): Observable<CrewCollection[]> {
+  //   return this.http.get<CreditsResponse>(`/${type}/${name}/credits`).pipe(map((response) => response.crew.map((crew)=> ({name: crew.name}))));
+  // }
+
   requestDetails(type: string | null, name: string | number): Observable<Details> {
     return this.http
       .get<SeriesCollectionDescriptionDTO | MovieCollectionDescriptionDTO>(`/${type}/${name}`)

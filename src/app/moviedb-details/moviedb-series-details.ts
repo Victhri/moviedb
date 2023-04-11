@@ -35,10 +35,14 @@ export interface SeriesCollectionDescriptionDTO {
   number_of_episodes: number;
   number_of_seasons: number;
 }
-
 export interface CreditsResponse {
-  cast: any[];
-  crew: any[];
+  id: number;
+  cast: ActorCollectionDTO[];
+  crew: CrewCollectionDTO[];
+}
+export interface CreditsData {
+  cast: ActorCollection[];
+  crew: CrewCollection[];
 }
 export interface Genre {
   id: number;
@@ -52,7 +56,38 @@ export interface Details {
   genres: Array<Genre>;
 }
 
+export interface ActorCollectionDTO {
+  adult: boolean;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  order: number;
+  original_name: string;
+  popularity: number;
+  name: string;
+  profile_path: string;
+}
+export interface CrewCollectionDTO {
+  adult: boolean;
+  credit_id: number;
+  department: string;
+  gender: number;
+  id: number;
+  job: string;
+  known_for_department: string;
+  original_name: string;
+  popularity: number;
+  name: string;
+  profile_path: string;
+}
+
 export interface ActorCollection {
   name: string;
   path: string;
+}
+export interface CrewCollection {
+  name: string;
 }

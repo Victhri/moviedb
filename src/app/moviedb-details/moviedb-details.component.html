@@ -1,36 +1,41 @@
 <div class="details-page">
-  <section class="details-page__info" *ngIf="details$ | async as details">
-    <img class="details-page__image" [src]="details.path | imageSource" />
-    <div class="details-page__wrap">
-      <p class="details-page__info-item">
-        <span class="details-page__title_big">Title:</span>
-        <span class="details-page__value_big">{{ details.title }}</span>
-      </p>
-      <p class="details-page__info-item">
-        <span class="details-page__title">Overview:</span>
-        <span class="details-page__value">{{ details.description }}</span>
-      </p>
-      <p class="details-page__info-item">
-        <span class="details-page__title">Date:</span>
-        <span class="details-page__value">{{ details.releaseDate }}</span>
-      </p>
-      <div class="details-page__genre" *ngFor="let genre of details.genres">
-        {{ genre.name }}
+  <div class="container">
+    <section class="details-page__info" *ngIf="details$ | async as details">
+      <img class="details-page__image" [src]="details.path | imageSource" />
+      <div class="details-page__wrap">
+        <p class="details-page__info-item">
+          <span class="details-page__title_big">Title:</span>
+          <span class="details-page__value_big">{{ details.title }}</span>
+        </p>
+        <p class="details-page__info-item">
+          <span class="details-page__title">Overview:</span>
+          <span class="details-page__value">{{ details.description }}</span>
+        </p>
+        <p class="details-page__info-item">
+          <span class="details-page__title">Date:</span>
+          <span class="details-page__value">{{ details.releaseDate }}</span>
+        </p>
+        <div class="details-page__genre" *ngFor="let genre of details.genres">
+          {{ genre.name }}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="details-page__actors" *ngIf="actors$ | async as actors">
-    <h2>Actors</h2>
-    <div class="details-page__actors-wrap">
-      <div class="details-page__actor" *ngFor="let actor of actors">
-        <img class="details-page__actor-image" [src]="actor.path | imageSource" />
-        <p class="details-page__actor-name">{{ actor.name }}</p>
+    <section class="details-page__actors" *ngIf="actors$ | async as actors">
+      <h2>Actors</h2>
+      <div class="details-page__actors-wrap">
+        <div class="details-page__actor" *ngFor="let actor of actors">
+          <img class="details-page__actor-image" [src]="actor.path | imageSource" />
+          <p class="details-page__actor-name">{{ actor.name }}</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section *ngIf="crew$ | async as crew">
-    <p *ngFor="let item of crew">{{ item.name }}</p>
-  </section>
+    <section class="details-page__crew" *ngIf="crew$ | async as crew">
+      <h2>Crew members</h2>
+      <div class="details-page__crew-wrap">
+        <p class="details-page__crew-item" *ngFor="let item of crew">{{ item.name }}</p>
+      </div>
+    </section>
+  </div>
 </div>

@@ -63,4 +63,30 @@
     min-width: 100px;
     margin-right: 10px;
   }
+  &__crew {
+    display: flex;
+    flex-direction: column;
+    height: 320px;
+    overflow-y: hidden;
+    margin-top: 40px;
+    padding: 14px;
+    border-radius: 20px;
+    background-color: #fff;
+  }
+  &__crew-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+  }
+  &__crew-item {
+    flex-shrink: 0;
+    padding: 6px;
+    margin: 8px;
+    background-color: rgba(52.5, 73.5, 94.5, 0.3);
+    border-radius: 20px;
+  }
+}
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
 }
