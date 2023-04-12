@@ -1,16 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, Observable, EMPTY, tap, map } from 'rxjs';
+import { switchMap, Observable, EMPTY, map } from 'rxjs';
 import { MoviedbSeriesDetailsApiService } from './moviedb-series-details-api.service';
-import {
-  Details,
-  ActorCollection,
-  CrewCollection,
-  CreditsResponse,
-  CrewCollectionDTO,
-  ActorCollectionDTO,
-  CreditsData,
-} from './moviedb-series-details';
+import { Details, ActorCollection, CrewCollection, CreditsResponse, CreditsData } from './moviedb-series-details';
 
 @Component({
   selector: 'app-moviedb-details',
@@ -18,11 +10,7 @@ import {
   styleUrls: ['./moviedb-details.component.scss'],
 })
 export class MoviedbDetailsComponent {
-  details$: Observable<Details> = this.activatedRoute.paramMap.pipe(
-    switchMap((paramMap) => this.requestDetails(paramMap.get('type'), paramMap.get('name')))
-  );
-
-  data$: Observable<CreditsData> = this.activatedRoute.paramMap.pipe(
+  private data$: Observable<CreditsData> = this.activatedRoute.paramMap.pipe(
     switchMap((paramMap) => this.getData(paramMap.get('type'), paramMap.get('name'))),
     map((response) => ({
       cast: response.cast.map((item) => ({ name: item.name, path: item.profile_path })),
@@ -33,6 +21,10 @@ export class MoviedbDetailsComponent {
   actors$: Observable<ActorCollection[]> = this.data$.pipe(map((data) => data.cast));
 
   crew$: Observable<CrewCollection[]> = this.data$.pipe(map((data) => data.crew));
+
+  details$: Observable<Details> = this.activatedRoute.paramMap.pipe(
+    switchMap((paramMap) => this.requestDetails(paramMap.get('type'), paramMap.get('name')))
+  );
 
   constructor(private readonly activatedRoute: ActivatedRoute, private readonly detailsApi: MoviedbSeriesDetailsApiService) {}
 

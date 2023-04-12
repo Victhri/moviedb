@@ -1,14 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, map, tap } from 'rxjs';
-import {
-  SeriesCollectionDescriptionDTO,
-  MovieCollectionDescriptionDTO,
-  CreditsResponse,
-  Details,
-  ActorCollection,
-  CrewCollection,
-} from './moviedb-series-details';
+import { Observable, map } from 'rxjs';
+import { SeriesCollectionDescriptionDTO, MovieCollectionDescriptionDTO, CreditsResponse, Details } from './moviedb-series-details';
 import { detailsMapper } from '../helpers/format-response';
 @Injectable({
   providedIn: 'root',
@@ -19,15 +12,6 @@ export class MoviedbSeriesDetailsApiService {
   getData(type: string | null, name: string | number): Observable<CreditsResponse> {
     return this.http.get<CreditsResponse>(`/${type}/${name}/credits`);
   }
-
-  // requestActors(type: string | null, name: string | number): Observable<ActorCollection[]> {
-  //   return this.http
-  //     .get<CreditsResponse>(`/${type}/${name}/credits`)
-  //     .pipe(map((response) => response.cast.map((actor) => ({ name: actor.name, path: actor.profile_path || '' }))));
-  // }
-  // requestCrew(type: string | null, name: string | number): Observable<CrewCollection[]> {
-  //   return this.http.get<CreditsResponse>(`/${type}/${name}/credits`).pipe(map((response) => response.crew.map((crew)=> ({name: crew.name}))));
-  // }
 
   requestDetails(type: string | null, name: string | number): Observable<Details> {
     return this.http
