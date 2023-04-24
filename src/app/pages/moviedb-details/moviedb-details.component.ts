@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, Observable, EMPTY, map } from 'rxjs';
 import { MoviedbSeriesDetailsApiService } from './moviedb-series-details-api.service';
 import { Details, CreditsResponse, CreditsData } from './moviedb-series-details';
+import { MediaType } from '../moviedb-collections/moviedb-collection';
 
 @Component({
   selector: 'app-moviedb-details',
@@ -10,8 +11,10 @@ import { Details, CreditsResponse, CreditsData } from './moviedb-series-details'
   styleUrls: ['./moviedb-details.component.scss'],
 })
 export class MoviedbDetailsComponent {
+
+@Input() mediaType: MediaType.Movie | MediaType.Serials = MediaType.Movie;
   data$: Observable<CreditsData> = this.activatedRoute.paramMap.pipe(
-    switchMap((paramMap) => this.getData(paramMap.get('type'), paramMap.get('name'))),
+    switchMap((paramMap) => this.getData(this.mediaType, paramMap.get('name'))),
     map((response) => ({
       cast: response.cast.map((item) => ({ name: item.name, path: item.profile_path })),
       crew: response.crew.map((item) => ({ name: item.name })),
@@ -19,7 +22,7 @@ export class MoviedbDetailsComponent {
   );
 
   details$: Observable<Details> = this.activatedRoute.paramMap.pipe(
-    switchMap((paramMap) => this.requestDetails(paramMap.get('type'), paramMap.get('name')))
+    switchMap((paramMap) => this.requestDetails(this.mediaType, paramMap.get('name')))
   );
 
   constructor(private readonly activatedRoute: ActivatedRoute, private readonly detailsApi: MoviedbSeriesDetailsApiService) {}

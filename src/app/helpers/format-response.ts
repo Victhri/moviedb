@@ -6,9 +6,9 @@ import {
   PersonCollection,
   SeriesCollection,
   SeriesCollectionDTO,
-} from '../moviedb-collections/moviedb-collection';
+} from '../pages/moviedb-collections/moviedb-collection';
 
-import { SeriesCollectionDescriptionDTO, MovieCollectionDescriptionDTO, Details } from '../moviedb-details/moviedb-series-details';
+import { SeriesCollectionDescriptionDTO, MovieCollectionDescriptionDTO, Details } from '../pages/moviedb-details/moviedb-series-details';
 
 export type SearchCollectionDTO = MovieCollectionDTO | SeriesCollectionDTO | PersonCollectionDTO;
 export type SearchCollection = MovieCollection | SeriesCollection | PersonCollection;

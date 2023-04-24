@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Details } from '../moviedb-series-details';
+import { Details } from 'src/app/pages/moviedb-details/moviedb-series-details';
 
 @Component({
   selector: 'app-moviedb-details-info',

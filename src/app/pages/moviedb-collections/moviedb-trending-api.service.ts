@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Moviedb } from '../infrastucture/http/moviedb-http';
+import { Moviedb } from '../../infrastucture/http/moviedb-http';
 import { MovieCollectionDTO, SeriesCollectionDTO, MovieCollection, SeriesCollection } from './moviedb-collection';
-import { seriesMapper, moviesMapper } from '../helpers/format-response';
+import { seriesMapper, moviesMapper } from '../../helpers/format-response';
 
 @Injectable({
   providedIn: 'root',

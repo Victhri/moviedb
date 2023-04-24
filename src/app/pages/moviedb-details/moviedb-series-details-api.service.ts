@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { SeriesCollectionDescriptionDTO, MovieCollectionDescriptionDTO, CreditsResponse, Details } from './moviedb-series-details';
-import { detailsMapper } from '../helpers/format-response';
+import { detailsMapper } from 'src/app/helpers/format-response';
+
 @Injectable({
   providedIn: 'root',
 })
