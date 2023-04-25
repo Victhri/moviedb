@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MoviedbDetailsComponent } from './moviedb-details/moviedb-details.component';
-import { MoviedbCollectionsComponent } from './moviedb-collections/moviedb-collections.component';
+import { MoviedbCollectionsComponent } from './pages/moviedb-collections/moviedb-collections.component';
+import { MoviedbTvDetailsComponent } from './components/moviedb-tv-details/moviedb-tv-details.component';
+import { MoviedbMovieDetailsComponent } from './components/moviedb-movie-details/moviedb-movie-details.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -14,8 +16,16 @@ const routes: Routes = [
     component: MoviedbCollectionsComponent,
   },
   {
-    path: ':type/:name',
-    component: MoviedbDetailsComponent,
+    path: 'tv/:name',
+    component: MoviedbTvDetailsComponent,
+  },
+  {
+    path: 'movie/:name',
+    component: MoviedbMovieDetailsComponent,
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
   },
 ];
 

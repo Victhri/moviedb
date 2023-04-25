@@ -1,0 +1,42 @@
+.details-page {
+  padding: 20px;
+  background: linear-gradient(to bottom right, rgba(52.5, 73.5, 94.5, 1), rgba(52.5, 73.5, 94.5, 0.84));
+  &__container {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+  &__actors {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    padding: 14px;
+    border-radius: 20px;
+    background-color: #fff;
+  }
+  &__actors-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__actors-wrap {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 14px;
+  }
+  &__crew {
+    display: flex;
+    flex-direction: column;
+    min-height: 140px;
+    max-height: 320px;
+    overflow-y: hidden;
+    margin-top: 40px;
+    padding: 14px;
+    border-radius: 20px;
+    background-color: #fff;
+  }
+  &__crew-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+  }
+}

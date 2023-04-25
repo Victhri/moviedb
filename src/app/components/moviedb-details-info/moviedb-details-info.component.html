@@ -1,0 +1,20 @@
+<section class="details-info">
+  <img class="details-info__image" [src]="contents.path | imageSource" />
+  <div class="details-info__wrap">
+    <p class="details-info__info-item">
+      <span class="details-info__title_big">Title:</span>
+      <span class="details-info__value_big">{{ contents.title }}</span>
+    </p>
+    <p class="details-info__item">
+      <span class="details-info__title">Overview:</span>
+      <span class="details-info__value">{{ contents.description }}</span>
+    </p>
+    <p class="details-info__item">
+      <span class="details-info__title">Date:</span>
+      <span class="details-info__value">{{ contents.releaseDate }}</span>
+    </p>
+    <div class="details-info__genre" *ngFor="let genre of contents.genres">
+      {{ genre.name }}
+    </div>
+  </div>
+</section>

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { MediaType, MovieCollection, PersonCollection, SeriesCollection } from 'src/app/moviedb-collections/moviedb-collection';
+import { MediaType, MovieCollection, PersonCollection, SeriesCollection } from 'src/app/pages/moviedb-collections/moviedb-collection';
 import { CardContents } from '../ui-card/ui-card';
 import { SearchCollection } from 'src/app/helpers/format-response';
 

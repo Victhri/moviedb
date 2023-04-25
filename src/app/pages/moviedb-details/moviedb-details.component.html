@@ -1,0 +1,23 @@
+<div class="details-page" *ngIf="data$ | async as data">
+  <div class="details-page__container">
+    <app-moviedb-details-info [contents]="details" *ngIf="details$ | async as details"></app-moviedb-details-info>
+
+    <section class="details-page__actors">
+      <h2>Actors</h2>
+      <div class="details-page__actors-wrap">
+        <app-moviedb-details-actors
+          class="details-page__actor-item"
+          [actor]="actor"
+          *ngFor="let actor of data.cast"
+        ></app-moviedb-details-actors>
+      </div>
+    </section>
+
+    <section class="details-page__crew">
+      <h2>Crew members</h2>
+      <div class="details-page__crew-wrap">
+        <app-moviedb-details-crew [crew]="crew" *ngFor="let crew of data.crew"></app-moviedb-details-crew>
+      </div>
+    </section>
+  </div>
+</div>

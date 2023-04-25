@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Moviedb } from '../infrastucture/http/moviedb-http';
-import { moviesMapper } from '../helpers/format-response';
+import { Moviedb } from '../../infrastucture/http/moviedb-http';
+import { moviesMapper } from '../../helpers/format-response';
 import { MovieCollection, MovieCollectionDTO } from './moviedb-collection';
 
 @Injectable({
