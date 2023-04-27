@@ -9,6 +9,7 @@ import { MoviedbMovieDetailsModule } from './components/moviedb-movie-details/mo
 import { MoviedbTvDetailsModule } from './components/moviedb-tv-details/moviedb-tv-details.module';
 import { MoviedbDetailsModule } from './pages/moviedb-details/moviedb-details.module';
 import { PageNotFoundModule } from './pages/page-not-found/page-not-found.module';
+import { MoviedbActorInfoModule } from './pages/moviedb-actor-info/moviedb-actor-info.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { PageNotFoundModule } from './pages/page-not-found/page-not-found.module
     PageNotFoundModule,
     MoviedbMovieDetailsModule,
     MoviedbTvDetailsModule,
+    MoviedbActorInfoModule,
   ],
   providers: [
     {

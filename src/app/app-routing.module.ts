@@ -4,6 +4,7 @@ import { MoviedbCollectionsComponent } from './pages/moviedb-collections/moviedb
 import { MoviedbTvDetailsComponent } from './components/moviedb-tv-details/moviedb-tv-details.component';
 import { MoviedbMovieDetailsComponent } from './components/moviedb-movie-details/moviedb-movie-details.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { MoviedbActorInfoComponent } from './pages/moviedb-actor-info/moviedb-actor-info.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'movie/:name',
     component: MoviedbMovieDetailsComponent,
+  },
+  {
+    path: 'person/:name',
+    component: MoviedbActorInfoComponent,
   },
   {
     path: '**',

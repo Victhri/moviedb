@@ -85,6 +85,7 @@ export interface CrewCollectionDTO {
 }
 
 export interface ActorCollection {
+  id: number;
   name: string;
   path: string;
 }
