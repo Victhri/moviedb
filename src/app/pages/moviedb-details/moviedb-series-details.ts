@@ -14,6 +14,7 @@ export interface MovieCollectionDescriptionDTO {
   status: string;
   tagline: string;
   title: string;
+  media_type?: string;
 }
 
 export interface SeriesCollectionDescriptionDTO {
@@ -34,6 +35,7 @@ export interface SeriesCollectionDescriptionDTO {
   name: string;
   number_of_episodes: number;
   number_of_seasons: number;
+  media_type?: string;
 }
 export interface CreditsResponse {
   id: number;

@@ -1,0 +1,68 @@
+.actor-page {
+  padding: 20px;
+  background: linear-gradient(to bottom right, rgba(52.5, 73.5, 94.5, 1), rgba(52.5, 73.5, 94.5, 0.84));
+  &__container {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+  &__info {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 16px;
+    border-radius: 20px;
+    @media screen and (max-width: 560px) {
+      align-items: flex-start;
+    }
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+  }
+  &__img {
+    border-radius: 20px;
+    height: 380px;
+    margin-right: 20px;
+    @media screen and (max-width: 560px) {
+      height: 140px;
+    }
+  }
+  &__name {
+    font-size: 22px;
+    font-weight: 600;
+    color: #090d31;
+    @media screen and (max-width: 560px) {
+      font-size: 10px;
+    }
+  }
+  &__text {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #090d31;
+    @media screen and (max-width: 560px) {
+      font-size: 12px;
+    }
+  }
+  &__description {
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #090d31;
+  }
+  &__list {
+    margin-top: 30px;
+    display: flex;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #fff;
+    overflow-x: auto;
+  }
+  &__list-item {
+    margin: 0 8px;
+  }
+  &__list-text {
+    font-size: 18px;
+    font-weight: 600;
+  }
+}

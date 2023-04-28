@@ -1,1 +1,20 @@
-<p>moviedb-actor-details works!</p>
+<section class="actor-page">
+  <section class="actor-page__container">
+    <section class="actor-page__info" *ngIf="actorInfo$ | async as info">
+      <img class="actor-page__img" [src]="info.img | imageSource" />
+      <div class="actor-page__item">
+        <p class="actor-page__name">{{ info.name }}</p>
+        <p class="actor-page__text">Birthday: {{ info.birthday | date }}</p>
+        <p class="actor-page__text">Place of birth {{ info.placeOfBirth }}</p>
+        <p class="actor-page__text">Famous in {{ info.famousFor }} department</p>
+        <p class="actor-page__description">{{ info.biography }}</p>
+      </div>
+    </section>
+    <section class="actor-page__list" *ngIf="actorMovies$ | async as movies">
+      <div class="actor-page__list-item" *ngFor="let item of movies.cast">
+        <app-ui-card [contents]="item | formatMediaType" [routerLink]="['/', item.mediaType, item.id]"></app-ui-card>
+        <p class="actor-page__list-text" *ngIf="item.character">Character: {{ item.character }}</p>
+      </div>
+    </section>
+  </section>
+</section>
