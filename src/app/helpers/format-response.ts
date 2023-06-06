@@ -1,3 +1,4 @@
+import { ActorDTO, ActorInfo, ActorMovie, ActorMovieDTO, ActorSeries, ActorSeriesDTO } from '../pages/moviedb-actor-info/actor-info';
 import {
   MediaType,
   MovieCollection,
@@ -86,6 +87,43 @@ export function detailsMapper(data: SeriesCollectionDescriptionDTO | MovieCollec
   };
 }
 
-function isMovie(data: SeriesCollectionDescriptionDTO | MovieCollectionDescriptionDTO): data is MovieCollectionDescriptionDTO {
+export function isMovie(data: SeriesCollectionDescriptionDTO | MovieCollectionDescriptionDTO): data is MovieCollectionDescriptionDTO {
   return 'title' in data;
+}
+
+export function ActorInfoMapper(data: ActorDTO): ActorInfo {
+  return {
+    name: data.name,
+    biography: data.biography,
+    birthday: data.birthday,
+    placeOfBirth: data.place_of_birth,
+    img: data.profile_path,
+    famousFor: data.known_for_department,
+  };
+}
+
+export function CombinedResponseWrapper(data: ActorMovieDTO | ActorSeriesDTO): ActorMovie | ActorSeries {
+  if (data.media_type === MediaType.Movie) {
+    return {
+      id: data.id,
+      title: data.title,
+      mediaType: MediaType.Movie,
+      popularity: data.popularity,
+      path: data.backdrop_path ?? '',
+      releaseDate: data.release_date,
+      character: data.character,
+    };
+  }
+  if (data.media_type === MediaType.Serials) {
+    return {
+      id: data.id,
+      name: data.name,
+      mediaType: MediaType.Serials,
+      popularity: data.popularity,
+      path: data.backdrop_path ?? '',
+      firstAirDate: data.first_air_date,
+      character: data.character,
+    };
+  }
+  throw new Error('The media type should be person, movie or tv');
 }

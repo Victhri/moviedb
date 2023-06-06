@@ -8,6 +8,7 @@ import { ActorCollection } from 'src/app/pages/moviedb-details/moviedb-series-de
 })
 export class MoviedbDetailsActorsComponent {
   @Input() actor: ActorCollection = {
+    id: 0,
     name: '',
     path: '',
   };

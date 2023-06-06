@@ -16,7 +16,7 @@ export class MoviedbDetailsComponent {
   data$: Observable<CreditsData> = this.activatedRoute.paramMap.pipe(
     switchMap((paramMap) => this.getData(this.mediaType, paramMap.get('name'))),
     map((response) => ({
-      cast: response.cast.map((item) => ({ name: item.name, path: item.profile_path })),
+      cast: response.cast.map((item) => ({ id: item.id, name: item.name, path: item.profile_path })),
       crew: response.crew.map((item) => ({ name: item.name })),
     }))
   );
